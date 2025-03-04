@@ -21,8 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install missing Pulumi dependencies
+      - name: Install missing Pulumi dependencies (indien nodig)
         run: npm install @pulumi/pulumiservice
+        continue-on-error: true  # Voorkomt falen als het al geïnstalleerd is
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -35,6 +36,9 @@ jobs:
         uses: pulumi/actions@v4
         with:
           pulumi-version: latest
+
+      - name: Verify Pulumi Plugins
+        run: pulumi plugin install resource aws latest
 
       - name: Set Pulumi Access Token
         run: echo "PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_ACCESS_TOKEN }}" >> $GITHUB_ENV
@@ -49,6 +53,11 @@ jobs:
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
+      - name: Refresh Pulumi State
+        run: pulumi refresh --yes
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
       - name: Preview Pulumi Changes
         run: pulumi preview
         env:
@@ -58,3 +67,4 @@ jobs:
         run: pulumi up --yes
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
