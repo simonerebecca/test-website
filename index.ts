@@ -12,6 +12,11 @@ try {
 
 import * as service from "@pulumi/pulumiservice";
 
+const provider = new aws.Provider("aws", {
+    profile: "test-simone",
+    region: "eu-central-1",
+});
+
 const settings = new service.DeploymentSettings("deploy-settings", {
     organization: "simonerebecca",
     project: "test-website",
