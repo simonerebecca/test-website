@@ -33,11 +33,23 @@ jobs:
         with:
           pulumi-version: latest
 
+      - name: Set Pulumi Access Token
+        run: echo "PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_ACCESS_TOKEN }}" >> $GITHUB_ENV
+
+      - name: Verify Pulumi Login
+        run: pulumi whoami
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
       - name: Select Pulumi Stack
         run: pulumi stack select dev
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
       - name: Preview Pulumi Changes
         run: pulumi preview
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
       - name: Deploy with Pulumi
         run: pulumi up --yes
