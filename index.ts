@@ -25,14 +25,13 @@ const myBucket = new aws.s3.Bucket("myBucket", {
     },
 });
 
-// Upload index.html naar de S3 bucket
-const indexHtml = new aws.s3.BucketObject("indexHtml", {
-    bucket: myBucket.id, // Koppel het object aan de S3-bucket
-    key: "index.html", // Bestandsnaam in de bucket
-    source: new pulumi.asset.FileAsset("index.html"), // Bestand dat geüpload moet worden
-    contentType: "text/html", // Zorg ervoor dat de browser het als HTML herkent
+const myBucketPublicAccessBlock = new aws.s3.BucketPublicAccessBlock("myBucketPublicAccessBlock", {
+    bucket: myBucket.id,
+    blockPublicAcls: false,
+    blockPublicPolicy: false,
+    ignorePublicAcls: false,
+    restrictPublicBuckets: false,
 });
-
 
 const bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
     bucket: myBucket.id,
@@ -51,6 +50,13 @@ const bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
     ),
 });
 
+// Upload index.html naar de S3 bucket
+const indexHtml = new aws.s3.BucketObject("indexHtml", {
+    bucket: myBucket.id, // Koppel het object aan de S3-bucket
+    key: "index.html", // Bestandsnaam in de bucket
+    source: new pulumi.asset.FileAsset("index.html"), // Bestand dat geüpload moet worden
+    contentType: "text/html", // Zorg ervoor dat de browser het als HTML herkent
+});
 
 // CloudFront-distributie aanmaken voor de S3-bucket
 const myDistribution = new aws.cloudfront.Distribution("myDistribution", {
