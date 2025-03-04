@@ -1,5 +1,16 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
+
+const { execSync } = require("child_process");
+
+try {
+  // Voer npm install uit om de package te installeren
+  execSync("npm install @pulumi/pulumiservice", { stdio: "inherit" });
+  console.log("Package geïnstalleerd!");
+} catch (error) {
+  console.error("Fout bij het installeren van de package:", error);
+}
+
 import * as service from "@pulumi/pulumiservice";
 
 const settings = new service.DeploymentSettings("deploy-settings", {
