@@ -3,8 +3,11 @@ import * as aws from "@pulumi/aws";
 
 const { execSync } = require("child_process");
 
+const awsProvider = new aws.Provider("myAwsProvider", {
+    region: "eu-central-1",  
+});
+
 try {
-  // Voer npm install uit om de package te installeren
   execSync("npm install @pulumi/pulumiservice", { stdio: "inherit" });
   console.log("Package geïnstalleerd!");
 } catch (error) {
