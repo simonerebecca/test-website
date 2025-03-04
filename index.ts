@@ -3,10 +3,6 @@ import * as aws from "@pulumi/aws";
 
 const { execSync } = require("child_process");
 
-const awsProvider = new aws.Provider("test-simone", {
-    region: "eu-central-1",  
-});
-
 try {
   execSync("npm install @pulumi/pulumiservice", { stdio: "inherit" });
   console.log("Package geïnstalleerd!");
@@ -22,7 +18,7 @@ const settings = new service.DeploymentSettings("deploy-settings", {
     stack: "dev",
     github: {
         deployCommits: true,
-        previewPullRequests: true,
+        previewPullRequests: false,
         pullRequestTemplate: true,
         repository: "simonerebecca/test"
     },
