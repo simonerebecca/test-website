@@ -24,8 +24,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_TOKEN_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_TOKEN }}
           aws-region: us-east-1 # Pas aan naar jouw regio
 
       - name: Install Pulumi CLI
@@ -42,4 +42,4 @@ jobs:
       - name: Deploy with Pulumi
         run: pulumi up --yes
         env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
