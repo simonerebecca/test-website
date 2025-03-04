@@ -5,7 +5,7 @@ import * as service from "@pulumi/pulumiservice";
 const settings = new service.DeploymentSettings("deploy-settings", {
     organization: "simonerebecca",
     project: "test-website",
-    stack: "dev1",
+    stack: "dev",
     github: {
         deployCommits: true,
         previewPullRequests: false,
@@ -14,7 +14,7 @@ const settings = new service.DeploymentSettings("deploy-settings", {
     },
     sourceContext: {
         git:{
-            repoUrl: "https://github.com/simonerebecca/test.git"
+            branch: "main"
         }},
 });
 
@@ -25,6 +25,31 @@ const myBucket = new aws.s3.Bucket("myBucket", {
     },
 });
 
+// Upload index.html naar de S3 bucket
+const indexHtml = new aws.s3.BucketObject("indexHtml", {
+    bucket: myBucket.id, // Koppel het object aan de S3-bucket
+    key: "index.html", // Bestandsnaam in de bucket
+    source: new pulumi.asset.FileAsset("index.html"), // Bestand dat geüpload moet worden
+    contentType: "text/html", // Zorg ervoor dat de browser het als HTML herkent
+});
+
+
+const bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
+    bucket: myBucket.id,
+    policy: pulumi.output(myBucket.id).apply(id =>
+        JSON.stringify({
+            Version: "2012-10-17",
+            Statement: [
+                {
+                    Effect: "Allow",
+                    Principal: "*",
+                    Action: "s3:GetObject",
+                    Resource: `arn:aws:s3:::${id}/*`,
+                },
+            ],
+        })
+    ),
+});
 
 
 // CloudFront-distributie aanmaken voor de S3-bucket
