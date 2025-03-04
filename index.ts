@@ -19,7 +19,7 @@ const settings = new service.DeploymentSettings("deploy-settings", {
     stack: "dev",
     github: {
         deployCommits: true,
-        previewPullRequests: false,
+        previewPullRequests: true,
         pullRequestTemplate: true,
         repository: "simonerebecca/test"
     },
