@@ -26,7 +26,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_TOKEN_ID }}
           aws-secret-access-key: ${{ secrets.AWS_TOKEN }}
-          aws-region: us-east-1 # Pas aan naar jouw regio
+          aws-region: eu-central-1
 
       - name: Install Pulumi CLI
         uses: pulumi/actions@v4
