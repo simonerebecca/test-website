@@ -3,7 +3,7 @@ import * as aws from "@pulumi/aws";
 
 const { execSync } = require("child_process");
 
-const awsProvider = new aws.Provider("myAwsProvider", {
+const awsProvider = new aws.Provider("test-simone", {
     region: "eu-central-1",  
 });
 
