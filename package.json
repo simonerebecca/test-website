@@ -7,8 +7,8 @@
     "deploy": "pulumi up"
   },
   "dependencies": {
-    "@pulumi/aws": "^6.0.0",
-    "@pulumi/pulumi": "^3.0.0",
+    "@pulumi/aws": "6.70.0",
+    "@pulumi/pulumi": "4.0.0",
     "@pulumi/pulumiservice":"0.29.0" 
   },
   "devDependencies": {
