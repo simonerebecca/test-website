@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🚀 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: 🔧 Install Node.js
@@ -18,28 +18,28 @@ jobs:
         with:
           node-version: 18
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: 🔑 Configure AWS Credentials
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1 # Pas aan naar jouw regio
 
-      - name: ⚡ Install Pulumi CLI
+      - name: Install Pulumi CLI
         uses: pulumi/actions@v4
         with:
           pulumi-version: latest
 
-      - name: 🔄 Select Pulumi Stack
+      - name: Select Pulumi Stack
         run: pulumi stack select dev
 
-      - name: 🔨 Preview Pulumi Changes
+      - name: Preview Pulumi Changes
         run: pulumi preview
 
-      - name: 🚀 Deploy with Pulumi
+      - name: Deploy with Pulumi
         run: pulumi up --yes
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
