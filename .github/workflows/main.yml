@@ -38,7 +38,7 @@ jobs:
           pulumi-version: latest
 
       - name: Verify Pulumi Plugins
-        run: pulumi plugin install resource aws latest
+        run: pulumi plugin install resource aws v5.44.0
 
       - name: Set Pulumi Access Token
         run: echo "PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_ACCESS_TOKEN }}" >> $GITHUB_ENV
