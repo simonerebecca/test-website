@@ -60,7 +60,7 @@ jobs:
 
       - name: Select Pulumi Stack
         working-directory: deployment
-        run: pulumi stack select dev
+        run: pulumi stack select dev --cwd=deployment 
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
