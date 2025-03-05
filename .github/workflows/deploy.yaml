@@ -62,6 +62,6 @@ jobs:
       - name: Run Pulumi
         uses: pulumi/actions@v4
         with:
-          command: up
+          command: destroy
           stack-name: dev
           work-dir: ./deployment 
