@@ -39,11 +39,15 @@ jobs:
         run: |
           echo "Beschikbare Pulumi stacks:"
           pulumi stack ls --cwd=deployment || echo "Geen stacks gevonden of Pulumi is niet correct geconfigureerd"
+          env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
       - name: Controleer Pulumi project
         run: |
           echo "Pulumi projectinformatie:"
           pulumi project --cwd=deployment || echo "Pulumi project kon niet worden geladen"
+          env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
       - name: Controleer Node.js installatie
         run: |
