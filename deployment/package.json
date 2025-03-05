@@ -1,7 +1,7 @@
 {
   "name": "static-website",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "deployment/index.ts",
   "scripts": {
     "build": "tsc",
     "deploy": "pulumi up"
