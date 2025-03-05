@@ -13,12 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Configure AWS credentials via OIDC
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::545009822348:role/GitHubOIDC
-          aws-region: us-west-2
-
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
