@@ -1,7 +1,7 @@
 name: Pulumi Debug Workflow
 
 on:
-  workflow_dispatch: # Handmatig starten vanuit GitHub Actions UI
+  workflow_dispatch: 
 
 jobs:
   debug:
@@ -26,31 +26,31 @@ jobs:
           echo "Pulumi versie:"
           pulumi version || echo "Pulumi is niet geïnstalleerd"
 
-      - name: Controleer Pulumi.yaml
+      - name: Controleer of Pulumi.yaml aanwezig is in /deployment
         run: |
-          if [ -f Pulumi.yaml ]; then
-            echo "Pulumi.yaml gevonden"
-            cat Pulumi.yaml
+          if [ -f deployment/Pulumi.yaml ]; then
+            echo "Pulumi.yaml gevonden in deployment/"
+            cat deployment/Pulumi.yaml
           else
-            echo "Pulumi.yaml niet gevonden"
+            echo "Pulumi.yaml niet gevonden in deployment/"
           fi
 
       - name: Controleer Pulumi stack
         run: |
           echo "Beschikbare Pulumi stacks:"
-          pulumi stack ls || echo "Geen stacks gevonden of Pulumi is niet correct geconfigureerd"
+          pulumi stack ls --cwd=deployment || echo "Geen stacks gevonden of Pulumi is niet correct geconfigureerd"
 
       - name: Controleer Pulumi project
         run: |
           echo "Pulumi projectinformatie:"
-          pulumi project || echo "Pulumi project kon niet worden geladen"
+          pulumi project --cwd=deployment || echo "Pulumi project kon niet worden geladen"
 
       - name: Controleer Node.js installatie
         run: |
           echo "Node.js versie:"
           node -v || echo "Node.js is niet geïnstalleerd"
 
-      - name: Controleer werkdirectory (indien nodig)
+      - name: Controleer /deployment directory en inhoud
         run: |
           if [ -d deployment ]; then
             echo "'deployment/' directory gevonden"
@@ -58,3 +58,4 @@ jobs:
           else
             echo "'deployment/' directory niet gevonden"
           fi
+
