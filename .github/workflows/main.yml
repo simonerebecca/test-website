@@ -43,6 +43,7 @@ jobs:
         uses: pulumi/actions@v4
         with:
           pulumi-version: latest
+          work-dir: ./deployment
 
       - name: Verify Pulumi Plugins
         run: pulumi plugin install resource aws $(pulumi plugin ls | grep aws | awk '{print $2}')
