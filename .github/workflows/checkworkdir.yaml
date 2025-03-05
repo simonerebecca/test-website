@@ -1,0 +1,60 @@
+name: Pulumi Debug Workflow
+
+on:
+  workflow_dispatch: # Handmatig starten vanuit GitHub Actions UI
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print huidige directory en inhoud
+        run: |
+          echo "Huidige werkdirectory:"
+          pwd
+          echo "Inhoud van de repository:"
+          ls -la
+          echo "Volledige directory-structuur:"
+          sudo apt-get install tree -y
+          tree -L 3
+
+      - name: Controleer of Pulumi is geïnstalleerd
+        run: |
+          echo "Pulumi versie:"
+          pulumi version || echo "Pulumi is niet geïnstalleerd"
+
+      - name: Controleer Pulumi.yaml
+        run: |
+          if [ -f Pulumi.yaml ]; then
+            echo "Pulumi.yaml gevonden"
+            cat Pulumi.yaml
+          else
+            echo "Pulumi.yaml niet gevonden"
+          fi
+
+      - name: Controleer Pulumi stack
+        run: |
+          echo "Beschikbare Pulumi stacks:"
+          pulumi stack ls || echo "Geen stacks gevonden of Pulumi is niet correct geconfigureerd"
+
+      - name: Controleer Pulumi project
+        run: |
+          echo "Pulumi projectinformatie:"
+          pulumi project || echo "Pulumi project kon niet worden geladen"
+
+      - name: Controleer Node.js installatie
+        run: |
+          echo "Node.js versie:"
+          node -v || echo "Node.js is niet geïnstalleerd"
+
+      - name: Controleer werkdirectory (indien nodig)
+        run: |
+          if [ -d deployment ]; then
+            echo "'deployment/' directory gevonden"
+            ls -la deployment
+          else
+            echo "'deployment/' directory niet gevonden"
+          fi
