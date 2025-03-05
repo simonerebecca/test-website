@@ -20,7 +20,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: deployment
 
       - name: Install missing Pulumi dependencies (indien nodig)
         run: npm install @pulumi/pulumiservice
@@ -57,12 +56,12 @@ jobs:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
       - name: Select Pulumi Stack
-        run: pulumi stack select dev --cwd=deployment
+        run: pulumi stack select dev 
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
       - name: Build with Pulumi
-        run: pulumi up --yes --cwd=deployment
+        run: pulumi up --yes 
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
