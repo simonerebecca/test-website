@@ -1,5 +1,5 @@
 name: test-website
 runtime: nodejs
 description: Een simpele statische website gehost op AWS S3 en CloudFront.
-stackConfigDir: /deployment
+
 
