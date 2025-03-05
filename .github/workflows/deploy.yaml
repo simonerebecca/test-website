@@ -1,5 +1,3 @@
-name: Deploy to AWS with Pulumi
-
 on:
   push:
     branches:
@@ -24,7 +22,7 @@ jobs:
       - name: Install missing Pulumi dependencies (indien nodig)
         run: npm install @pulumi/pulumiservice
         continue-on-error: true  # Voorkomt falen als het al geïnstalleerd is
-        
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -43,6 +41,7 @@ jobs:
         uses: pulumi/actions@v4
         with:
           pulumi-version: latest
+          work-dir: ./deployment
 
       - name: Verify Pulumi Plugins
         run: pulumi plugin install resource aws $(pulumi plugin ls | grep aws | awk '{print $2}')
@@ -65,6 +64,4 @@ jobs:
         with:
           command: up
           stack-name: dev
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-
+          work-dir: ./deployment 
