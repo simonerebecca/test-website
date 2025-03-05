@@ -45,18 +45,15 @@ jobs:
           pulumi-version: latest
 
       - name: Verify Pulumi Plugins
-        working-directory: deployment
         run: pulumi plugin install resource aws $(pulumi plugin ls | grep aws | awk '{print $2}')
 
       - name: Set Pulumi Access Token
-        working-directory: deployment
         run: echo "PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_ACCESS_TOKEN }}" >> $GITHUB_ENV
 
       - name: Verify Pulumi Login
         run: pulumi whoami
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-        working-directory: deployment
 
       - name: Select Pulumi Stack
         run: pulumi stack select dev --cwd=deployment
