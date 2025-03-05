@@ -13,5 +13,6 @@
   },
   "devDependencies": {
     "typescript": "^4.5.4"
+    "nodejs": "^22.14.0"
   }
 }
