@@ -1,6 +1,10 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 
+const organizationName = "simonerebecca";
+const projectName = "test-website";
+const stackName = "dev";
+
 const { execSync } = require("child_process");
 
 try {
