@@ -11,5 +11,5 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true
-  },
+  }
 
