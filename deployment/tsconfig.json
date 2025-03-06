@@ -12,5 +12,15 @@
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true
   }
+
+  "include": [
+    "Pulumi.dev.yaml",
+    "Pulumi.yaml",
+    "index.html",
+    "index.ts",
+    "package-lock.json",
+    "package.json",
+    "tsconfig.json"
+  ]
 }
 
