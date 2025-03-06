@@ -11,13 +11,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Change to deployment directory
+        run: cd deployment
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install --cwd=deployment
+      - name: Install dependencies in deployment directory
+        run: npm install
+        working-directory: ./deployment
 
       - name: Install missing Pulumi dependencies 
         run: npm install @pulumi/pulumiservice --cwd=deployment
