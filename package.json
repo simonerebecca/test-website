@@ -1,5 +1,5 @@
 {
-  "name": "static-website",
+  "name": "test-website",
   "version": "1.0.0",
   "main": "deployment/index.ts",
   "scripts": {
