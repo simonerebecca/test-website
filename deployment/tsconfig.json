@@ -12,10 +12,4 @@
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "deployment/**/*.ts",
-    "deployment/**/*.yaml",
-  ],
-  "exclude": [
-    "node_modules",
-  ]
+
