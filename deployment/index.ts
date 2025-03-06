@@ -29,7 +29,7 @@ const settings = new service.DeploymentSettings("deploy-settings", {
         deployCommits: true,
         previewPullRequests: false,
         pullRequestTemplate: true,
-        repository: "simonerebecca/test"
+        repository: "simonerebecca/test-website"
     },
     sourceContext: {
         git:{
