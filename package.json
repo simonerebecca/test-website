@@ -16,10 +16,10 @@
     "typescript": "^4.5.4"
   }
   "files": {
-    "pulumi.dev.yaml",
-    "pulumi.yaml",
-    "index.ts",
-    "index.html"
+    "deployment/pulumi.dev.yaml",
+    "deployment/pulumi.yaml",
+    "deployment/index.ts",
+    "deployment/index.html"
   }, 
 
 }
