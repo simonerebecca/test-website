@@ -7,11 +7,15 @@
     "deploy": "pulumi up"
   },
   "dependencies": {
-    "@pulumi/aws": "^6.70.0",
+    "@pulumi/aws": "^6.67.0",
     "@pulumi/pulumi": "^3.0.0",
     "@pulumi/pulumiservice":"0.29.0" 
   },
   "devDependencies": {
+    "ts-node": "10.9.2",
     "typescript": "^4.5.4"
+  }
+  "engines": {
+  "node": ">=20.x.x"
   }
 }
