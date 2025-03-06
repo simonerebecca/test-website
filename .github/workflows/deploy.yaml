@@ -19,16 +19,21 @@ jobs:
         with:
           node-version: 18
 
+      - name: Change to deployment directory
+        run: cd deployment
+        
       - name: Install dependencies in deployment directory
         run: npm install
         working-directory: ./deployment
 
       - name: Install missing Pulumi dependencies 
         run: npm install @pulumi/pulumiservice --cwd=deployment
+        working-directory: ./deployment
         continue-on-error: true  
 
       - name: Install Pulumi dependencies
         run: pulumi plugin install resource aws --cwd=deployment
+        working-directory: ./deployment
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
