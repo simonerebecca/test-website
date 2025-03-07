@@ -3,7 +3,7 @@ import * as aws from "@pulumi/aws";
 
 const organizationName = "simonerebecca";
 const projectName = "test-website";
-const stack = pulumi.getStack();
+const stack = "dev";
 
 const { execSync } = require("child_process");
 
