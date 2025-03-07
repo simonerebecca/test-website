@@ -68,7 +68,7 @@ const bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
             ],
         })
     ),
-});
+}, { dependsOn: [myBucketPublicAccessBlock] });
 
 // Upload index.html naar de S3 bucket
 const indexHtml = new aws.s3.BucketObject("indexHtml", {
