@@ -18,11 +18,12 @@ import * as service from "@pulumi/pulumiservice";
 
 let provider = new aws.Provider("provider", {
     region: "eu-central-1",
-    accessKey: process.env.AWS_ACCESS_KEY_ID,
+    accessKey: 
+      process.env.AWS_ACCESS_KEY_ID,
     secretKey: process.env.AWS_SECRET_ACCESS_KEY,
     assumeRole: {
-      sessionName: "pulumi-role",
-      roleRN: "arn:aws:iam::545009822348:role/pulumi-role"
+      roleArn: "arn:aws:iam::545009822348:role/pulumi-role",
+      sessionName: "pulumi-role"
     }
 });
 
