@@ -30,12 +30,12 @@ const settings = new service.DeploymentSettings("deploy-settings", {
         deployCommits: true,
         previewPullRequests: false,
         pullRequestTemplate: true,
-        paths: "/deployment",
         repository: "simonerebecca/test-website"
     },
     sourceContext: {
         git:{
-            branch: "main"
+            branch: "main",
+            repoDir: "deployment"
         }},
 });
 
