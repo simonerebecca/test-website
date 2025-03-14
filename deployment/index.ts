@@ -37,6 +37,14 @@ const settings = new service.DeploymentSettings("deploy-settings", {
             branch: "main",
             repoDir: "deployment"
         }},
+    operationContext:{
+        oidc:{
+          aws:{
+            roleARN: "arn:aws:iam::545009822348:role/pulumi-role",
+            sessionName: "pulumi-role"
+          }
+        }
+    }
 });
 
 // Maak een S3 bucket aan voor statische website hosting
