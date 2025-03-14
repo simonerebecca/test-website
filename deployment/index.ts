@@ -32,11 +32,6 @@ const settings = new service.DeploymentSettings("deploy-settings", {
         pullRequestTemplate: true,
         repository: "simonerebecca/test-website"
     },
-    sourceContext: {
-        git:{
-            branch: "main",
-            repoDir: "deployment"
-        }},
     operationContext:{
         oidc:{
           aws:{
@@ -44,7 +39,13 @@ const settings = new service.DeploymentSettings("deploy-settings", {
             sessionName: "pulumi-role"
           }
         }
-    }
+    },
+    sourceContext: {
+        git:{
+            branch: "main",
+            repoDir: "deployment"
+        }},
+    
 });
 
 // Maak een S3 bucket aan voor statische website hosting
