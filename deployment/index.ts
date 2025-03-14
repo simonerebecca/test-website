@@ -16,10 +16,10 @@ try {
 
 import * as service from "@pulumi/pulumiservice";
 
-const provider = new aws.Provider("myProvider", {
+let provider = new aws.Provider("provider", {
+    region: "eu-central-1",
     accessKey: process.env.AWS_ACCESS_KEY_ID,
-    secretKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: "eu-central-1"
+    secretKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
 const settings = new service.DeploymentSettings("deploy-settings", {
