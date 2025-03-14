@@ -48,7 +48,7 @@ const settings = new service.DeploymentSettings("deploy-settings", {
 });
 
 // Maak een S3 bucket aan voor statische website hosting
-const myBucket = new aws.s3.Bucket("myBucket", {
+const myBucket = new aws.s3.Bucket("mybucket", {
     website: {
         indexDocument: "index.html",
     },
